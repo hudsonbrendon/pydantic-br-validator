@@ -1,0 +1,25 @@
+image: python:3.11
+
+stages:
+  - test
+
+variables:
+  PYTHONDONTWRITEBYTECODE: "1"
+  PYTHONUNBUFFERED: "1"
+
+before_script:
+  - python -V
+  - pip install poetry
+  - poetry config virtualenvs.create false # Disable virtualenvs, we'll use global
+
+ruff:
+  stage: test
+  script:
+    - poetry install --no-root
+    - ruff check .
+
+test:
+  stage: test
+  script:
+    - poetry install --no-root
+    - poetry run pytest # Run pytest for testing
