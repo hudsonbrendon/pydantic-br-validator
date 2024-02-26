@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "pydantic_br_validator"
-version = "0.1.0"
+name = "pydantic-br-validator"
+version = "0.2.0"
 description = "Uma biblioteca python com modelos de validação para os principais documentos brasileiros"
 authors = ["Hudson Brendon <contato.hudsonbrendon@gmail.com>"]
 readme = "README.md"

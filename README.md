@@ -5,7 +5,7 @@ Uma biblioteca python com modelos de validação para os principais documentos b
 # Instalação
 
 ```bash
-pip install pydantic_br_validator
+pip install pydantic-br-validator
 ```
 
 # Campos disponíveis
