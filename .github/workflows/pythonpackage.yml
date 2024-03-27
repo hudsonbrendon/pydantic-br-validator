@@ -41,7 +41,7 @@ jobs:
         run: poetry install
 
       - name: ruff
-        run: poetry run ruff --check .
+        run: poetry run ruff check .
 
   test:
     name: test ${{ matrix.os }} / ${{ matrix.python-version }}
