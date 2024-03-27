@@ -60,7 +60,7 @@ jobs:
         uses: Gr1N/setup-poetry@v8
 
       - name: Install dependencies
-        run: poetry install --only dev
+        run: poetry install
 
       - name: pytest
         run: poetry run pytest --cov --cov-report xml tests
