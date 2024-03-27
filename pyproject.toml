@@ -6,7 +6,7 @@ authors = ["Hudson Brendon <contato.hudsonbrendon@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.8"
 pydantic = "2.3.0"
 
 [tool.poetry.group.dev.dependencies]
