@@ -6,12 +6,12 @@ authors = ["Hudson Brendon <contato.hudsonbrendon@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 pydantic = "2.3.0"
+pre-commit = "^3.7.0"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.2.2"
-pre-commit = "^3.6.2"
 pytest = "^8.0.1"
 pytest-sugar = "^1.0.0"
 pytest-cov = "^4.1.0"
