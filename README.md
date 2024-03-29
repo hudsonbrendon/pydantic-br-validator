@@ -1,8 +1,5 @@
-# Pydantic BR Validator
+# Pydantic BR Validator 🇧🇷
 
-<p align="center">
-  <a href="https://sqlmodel.tiangolo.com"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/1600px-Flag_of_Brazil.svg.png" alt="Pydantic BR Validator"></a>
-</p>
 <p align="center">
     <em>Uma biblioteca python com modelos de validação para os principais documentos brasileiros.</em>
 </p>
