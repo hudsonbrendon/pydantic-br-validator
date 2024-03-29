@@ -93,6 +93,40 @@ cliente = Cliente(
 pprint(cliente.dict())
 ```
 
+# CEP
+
+```python
+from pprint import pprint
+
+from pydantic import BaseModel
+
+from pydantic_br_validator import CEP, CEPDigits, CEPMask
+
+
+class Endereco(BaseModel):
+    rua: str
+    numero: str
+    bairro: str
+    cidade: str
+    cep: CEP  # aceita CEP válidos com ou sem máscara
+    cep_mask: CEPMask  # aceita CEP válido apenas com máscara
+    cep_digits: CEPDigits  # aceita CEP válido apnas com dígitos
+
+
+endereco = Endereco(
+    rua="Avenida Paulista",
+    numero="100",
+    bairro="Aclimação",
+    cidade="São Paulo",
+    cep="01310100",
+    cep_mask="01310-100",
+    cep_digits="01310100",
+)
+
+
+pprint(endereco.dict())
+```
+
 # Licença
 
 Este projeto está licenciado sob os termos da licença do [MIT licença](https://en.wikipedia.org/wiki/MIT_License)

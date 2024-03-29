@@ -20,6 +20,10 @@ if TYPE_CHECKING:
     Certidao = str
     CertidaoMask = str
     CertidaoDigits = str
+    CEP = str
+    CEPMask = str
+    CEPDigits = str
 else:
     from .fields.cnpj_field import *  # noqa
     from .fields.cpf_field import *  # noqa
+    from .fields.cep_field import *  # noqa
