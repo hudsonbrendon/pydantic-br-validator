@@ -36,7 +36,7 @@ pip install pydantic-br-validator
 - [ ] Renavam
 - [ ] Placa
 - [ ] ISBN
-- [ ] CEP
+- [x] CEP
 
 # Exemplos
 
