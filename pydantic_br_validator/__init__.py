@@ -25,5 +25,6 @@ if TYPE_CHECKING:
     CEPDigits = str
 else:
     from .fields.cnpj_field import *  # noqa
+    from .fields.cnh_field import *  # noqa
     from .fields.cpf_field import *  # noqa
     from .fields.cep_field import *  # noqa
