@@ -28,7 +28,7 @@ pip install pydantic-br-validator
 - [x] CPF
 - [x] CNPJ
 - [ ] RG
-- [ ] CNH
+- [x] CNH
 - [ ] DUT
 - [ ] Título de eleitor
 - [ ] PIS
