@@ -1,19 +1,23 @@
 {
-  "[python]": {
+    "[python]": {
       "editor.defaultFormatter": "charliermarsh.ruff",
       "editor.formatOnSave": true,
       "editor.codeActionsOnSave": {
-          "source.fixAll": "explicit",
-          "source.organizeImports": "explicit"
+        "source.fixAll": "explicit",
+        "source.organizeImports": "explicit"
       }
-  },
-  "editor.fontFamily": "FiraCode-Retina",
-  "editor.fontLigatures": true,
-  "python.testing.pytestArgs": [
+    },
+    "editor.fontFamily": "FiraCode-Retina",
+    "editor.fontLigatures": true,
+    "python.testing.pytestArgs": [
       "pydantic_br_validator",
       "-n",
       "auto"
-  ],
-  "python.testing.pytestEnabled": true,
-  "python.terminal.activateEnvironment": true
-}
+    ],
+    "python.testing.pytestEnabled": true,
+    "python.terminal.activateEnvironment": true,
+    "python.analysis.supportDocstringTemplate": true,
+    "python.analysis.aiCodeActions": {
+      "generateDocstring": true
+    }
+  }

@@ -1,24 +1,21 @@
-[tool.poetry]
+[project]
 name = "pydantic-br-validator"
 version = "0.7.0"
 description = "Uma biblioteca python com modelos de validação para os principais documentos brasileiros"
-authors = ["Hudson Brendon <contato.hudsonbrendon@gmail.com>"]
 readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "pre-commit>=3.7.0",
+    "pydantic==2.3.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-pydantic = "2.3.0"
-pre-commit = "^3.7.0"
-
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.2.2"
-pytest = "^8.0.1"
-pytest-sugar = "^1.0.0"
-pytest-cov = "^4.1.0"
-pytest-xdist = "^3.5.0"
-coverage = "^7.4.2"
-faker = "^23.2.1"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[dependency-groups]
+dev = [
+    "coverage>=7.4.2",
+    "faker>=23.2.1",
+    "pytest-cov>=4.1.0",
+    "pytest>=8.0.1",
+    "ruff>=0.2.2",
+    "pytest-sugar>=1.0.0",
+    "pytest-xdist>=3.5.0",
+]
