@@ -38,10 +38,10 @@ jobs:
         uses: Gr1N/setup-poetry@v8
 
       - name: Install dependencies
-        run: poetry install
+        run: uv install
 
       - name: ruff
-        run: poetry run ruff check .
+        run: uv run ruff check .
 
   test:
     name: test ${{ matrix.os }} / ${{ matrix.python-version }}

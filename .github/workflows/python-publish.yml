@@ -28,11 +28,9 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install poetry
-          poetry config ${{ secrets.PYPI_SECRET_KEY }}
-      - name: Check Package
-        run: poetry check
+          python -m pip install uv
+          export UV_PUBLISH_TOKEN=${{ secrets.PYPI_SECRET_KEY }}
       - name: Build Package
-        run: poetry build
+        run: uv build
       - name: Publish Package
-        run: poetry publish
+        run: uv publish
