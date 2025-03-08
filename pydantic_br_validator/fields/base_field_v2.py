@@ -8,17 +8,13 @@ pydantic_version = get_pydantic_version()
 if pydantic_version.value == 1:
 
     class core_schema:  # noqa
-        def CoreSchema(self):
-            ...
+        def CoreSchema(self): ...
 
-        def general_after_validator_function(self):
-            ...
+        def general_after_validator_function(self): ...
 
-        def str_schema(self):
-            ...
+        def str_schema(self): ...
 
-        def ValidationInfo(self):
-            ...
+        def ValidationInfo(self): ...
 
 
 if pydantic_version.value == 2:
@@ -64,5 +60,8 @@ class BaseDigitsV2(BasePydanticV2):
     @classmethod
     def _validate(cls, __input_value: str, _: core_schema.ValidationInfo) -> str:
         cls.validate_type(__input_value)
-        cls.validate_numbers(__input_value)
+        if hasattr(cls, "validate_rg_digits"):
+            cls.validate_rg_digits(__input_value)
+        else:
+            cls.validate_numbers(__input_value)
         return cls.validate(__input_value)

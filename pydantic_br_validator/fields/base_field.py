@@ -84,7 +84,10 @@ class BaseDigits(Base, BaseDigitsV2):
     @classmethod
     def __get_validators__(cls) -> CallableGenerator:
         yield cls.validate_type
-        yield cls.validate_numbers
+        if hasattr(cls, "validate_rg_digits"):
+            yield cls.validate_rg_digits
+        else:
+            yield cls.validate_numbers
         yield cls.validate
 
     @classmethod

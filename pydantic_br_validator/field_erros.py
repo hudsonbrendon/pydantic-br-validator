@@ -5,6 +5,7 @@ __all__ = [
     "FieldMaskError",
     "FieldDigitError",
     "FieldInvalidError",
+    "RGDigitError",
 ]
 
 
@@ -26,6 +27,12 @@ class FieldMaskError(PydanticValueError):
 class FieldDigitError(PydanticValueError):
     code = "not_digits"
     msg_template = "field only accept digits as string"
+    message_template = msg_template
+
+
+class RGDigitError(PydanticValueError):
+    code = "not_digits_rg"
+    msg_template = "field only accept digits or X as last character"
     message_template = msg_template
 
 
