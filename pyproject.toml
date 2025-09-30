@@ -1,6 +1,6 @@
 [project]
 name = "pydantic-br-validator"
-version = "0.7.0"
+version = "0.8.0"
 description = "Uma biblioteca python com modelos de validação para os principais documentos brasileiros"
 readme = "README.md"
 requires-python = ">=3.9"
