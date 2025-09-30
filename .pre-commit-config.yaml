@@ -24,7 +24,6 @@ repos:
       - id: check-symlinks
       - id: destroyed-symlinks
       - id: fix-byte-order-marker
-      - id: name-tests-test
   - repo: https://github.com/charliermarsh/ruff-pre-commit
     rev: v0.8.2
     hooks:
