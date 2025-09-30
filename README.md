@@ -22,7 +22,7 @@
 ```bash
 pip install pydantic-br-validator
 ```
-or 
+ou
 ```bash
 uv add pydantic-br-validator
 ```
