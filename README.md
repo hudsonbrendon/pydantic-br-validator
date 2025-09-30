@@ -22,6 +22,10 @@
 ```bash
 pip install pydantic-br-validator
 ```
+or 
+```bash
+uv add pydantic-br-validator
+```
 
 # Campos disponíveis
 
