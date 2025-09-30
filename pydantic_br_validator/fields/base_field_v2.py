@@ -8,17 +8,13 @@ pydantic_version = get_pydantic_version()
 if pydantic_version.value == 1:
 
     class core_schema:  # noqa
-        def CoreSchema(self):
-            ...
+        def CoreSchema(self): ...
 
-        def general_after_validator_function(self):
-            ...
+        def general_after_validator_function(self): ...
 
-        def str_schema(self):
-            ...
+        def str_schema(self): ...
 
-        def ValidationInfo(self):
-            ...
+        def ValidationInfo(self): ...
 
 
 if pydantic_version.value == 2:
@@ -33,8 +29,9 @@ class BasePydanticV2:
     def __get_pydantic_core_schema__(
         cls,
         source,
+        handler=None,
     ) -> core_schema.CoreSchema:
-        return core_schema.general_after_validator_function(
+        return core_schema.with_info_after_validator_function(
             cls._validate, core_schema.str_schema()
         )
 
