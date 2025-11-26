@@ -1,6 +1,6 @@
 [project]
 name = "pydantic-br-validator"
-version = "0.8.0"
+version = "0.9.0"
 description = "Uma biblioteca python com modelos de validação para os principais documentos brasileiros"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -18,4 +18,9 @@ dev = [
     "ruff>=0.2.2",
     "pytest-sugar>=1.0.0",
     "pytest-xdist>=3.5.0",
+]
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore:distutils Version classes are deprecated:DeprecationWarning",
 ]

@@ -1,5 +1,5 @@
 from ..validators.cnpj_validator import CNPJValidator
-from .base_field import Base, BaseDigits, BaseMask
+from .base_field import Base, BaseAlphanumeric, BaseMask
 
 __all__ = [
     "CNPJ",
@@ -11,6 +11,7 @@ __all__ = [
 class CNPJ(Base):
     """
     Accepts string of CNPJ with or without mask.
+    Supports both numeric and alphanumeric CNPJ formats.
 
     Attributes:
         number (str): CNPJ number.
@@ -24,6 +25,7 @@ class CNPJ(Base):
 class CNPJMask(BaseMask):
     """
     Only Accepts string of CNPJ with mask.
+    Supports both numeric and alphanumeric CNPJ formats.
 
     Attributes:
         number (str): CNPJ number.
@@ -33,9 +35,10 @@ class CNPJMask(BaseMask):
     Validator = CNPJValidator
 
 
-class CNPJDigits(BaseDigits):
+class CNPJDigits(BaseAlphanumeric):
     """
-    Only Accepts string of CNPJ with digits.
+    Only Accepts string of CNPJ without mask (digits/alphanumeric only).
+    Supports both numeric and alphanumeric CNPJ formats.
 
     Attributes:
         number (str): CNPJ number.

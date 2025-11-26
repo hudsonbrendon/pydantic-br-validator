@@ -31,7 +31,7 @@ class BasePydanticV2:
         source,
         handler=None,
     ) -> core_schema.CoreSchema:
-        return core_schema.with_info_after_validator_function(
+        return core_schema.no_info_after_validator_function(
             cls._validate, core_schema.str_schema()
         )
 
@@ -44,14 +44,14 @@ class BasePydanticV2:
         return field_schema
 
     @classmethod
-    def _validate(cls, __input_value: str, _: core_schema.ValidationInfo) -> str:
+    def _validate(cls, __input_value: str) -> str:
         cls.validate_type(__input_value)
         return cls.validate(__input_value)
 
 
 class BaseMaskV2(BasePydanticV2):
     @classmethod
-    def _validate(cls, __input_value: str, _: core_schema.ValidationInfo) -> str:
+    def _validate(cls, __input_value: str) -> str:
         cls.validate_type(__input_value)
         cls.validate_mask(__input_value)
         return cls.validate(__input_value)
@@ -59,7 +59,15 @@ class BaseMaskV2(BasePydanticV2):
 
 class BaseDigitsV2(BasePydanticV2):
     @classmethod
-    def _validate(cls, __input_value: str, _: core_schema.ValidationInfo) -> str:
+    def _validate(cls, __input_value: str) -> str:
         cls.validate_type(__input_value)
         cls.validate_numbers(__input_value)
+        return cls.validate(__input_value)
+
+
+class BaseAlphanumericV2(BasePydanticV2):
+    @classmethod
+    def _validate(cls, __input_value: str) -> str:
+        cls.validate_type(__input_value)
+        cls.validate_alphanumeric(__input_value)
         return cls.validate(__input_value)

@@ -20,25 +20,51 @@ class CNPJValidator(FieldMaskValidator):
                 return True
         return False
 
+    def _get_char_value(self, char: str) -> int:
+        """
+        Retorna o valor do caractere para cálculo do dígito verificador.
+        Para CNPJ alfanumérico, o valor é o código ASCII - 48.
+        Números: 0-9 (valores 0-9)
+        Letras: A-Z (valores 17-42)
+        """
+        return ord(char.upper()) - 48
+
+    def _is_valid_cnpj_char(self, char: str) -> bool:
+        """Verifica se o caractere é válido para CNPJ alfanumérico (0-9, A-Z)."""
+        return char.isdigit() or (char.upper() >= "A" and char.upper() <= "Z")
+
+    def _clean_cnpj(self, cnpj: str) -> str:
+        """Remove caracteres de formatação (pontos, barras, hífens)."""
+        return re.sub(r"[.\-/]", "", cnpj).upper()
+
     def validate(self) -> bool:
-        cnpj = re.sub("[^0-9]", "", self.cnpj)
+        cnpj = self._clean_cnpj(self.cnpj)
 
         if len(cnpj) != 14:
             return False
+
+        # Verifica se os 12 primeiros caracteres são alfanuméricos válidos
+        for char in cnpj[:12]:
+            if not self._is_valid_cnpj_char(char):
+                return False
+
+        # Os 2 últimos dígitos devem ser numéricos
+        if not cnpj[12:14].isdigit():
+            return False
+
         first_digit = self._validate_first_digit(cnpj)
         second_digit = self._validate_second_digit(cnpj)
         return cnpj[12] == first_digit and cnpj[13] == second_digit
 
-    def _validate_first_digit(self, cnpj) -> str:
-        sum = 0
+    def _validate_first_digit(self, cnpj: str) -> str:
+        total = 0
         weight = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
 
-        """ Valida o primeiro digito """
         for n in range(12):
-            value = int(cnpj[n]) * weight[n]
-            sum = sum + value
+            value = self._get_char_value(cnpj[n]) * weight[n]
+            total = total + value
 
-        check_digit = sum % 11
+        check_digit = total % 11
 
         if check_digit < 2:
             first_digit = 0
@@ -46,13 +72,13 @@ class CNPJValidator(FieldMaskValidator):
             first_digit = 11 - check_digit
         return str(first_digit)
 
-    def _validate_second_digit(self, cnpj) -> str:
-        sum = 0
+    def _validate_second_digit(self, cnpj: str) -> str:
+        total = 0
         weight = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
         for n in range(13):
-            sum = sum + int(cnpj[n]) * weight[n]
+            total = total + self._get_char_value(cnpj[n]) * weight[n]
 
-        check_digit = sum % 11
+        check_digit = total % 11
 
         if check_digit < 2:
             second_digit = 0
