@@ -8,12 +8,13 @@ from ..field_erros import (
 )
 from ..get_versions import get_pydantic_version
 from ..validators.base_validator import FieldMaskValidator, FieldValidator
-from .base_field_v2 import BaseDigitsV2, BaseMaskV2, BasePydanticV2
+from .base_field_v2 import BaseAlphanumericV2, BaseDigitsV2, BaseMaskV2, BasePydanticV2
 
 __all__ = [
     "Base",
     "BaseMask",
     "BaseDigits",
+    "BaseAlphanumeric",
 ]
 
 AnyCallable = Callable[..., Any]
@@ -90,6 +91,23 @@ class BaseDigits(Base, BaseDigitsV2):
     @classmethod
     def validate_numbers(cls, value: str) -> str:
         if not value.isdigit():
+            if pydantic_version.value == 1:
+                raise FieldDigitError()
+            if pydantic_version.value == 2:
+                raise FieldDigitError(FieldDigitError.msg_template)
+        return value
+
+
+class BaseAlphanumeric(Base, BaseAlphanumericV2):
+    @classmethod
+    def __get_validators__(cls) -> CallableGenerator:
+        yield cls.validate_type
+        yield cls.validate_alphanumeric
+        yield cls.validate
+
+    @classmethod
+    def validate_alphanumeric(cls, value: str) -> str:
+        if not value.isalnum():
             if pydantic_version.value == 1:
                 raise FieldDigitError()
             if pydantic_version.value == 2:
